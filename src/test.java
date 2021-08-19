@@ -4,6 +4,37 @@ import java.util.*;
 public class test {
 
     /*
+    Given a string, find out if its characters can be rearranged to form a palindrome.
+
+Example
+
+For inputString = "aabb", the output should be
+palindromeRearranging(inputString) = true.
+
+We can rearrange "aabb" to make "abba", which is a palindrome.
+     */
+    boolean palindromeRearranging(String inputString) {
+        Stack<Character> check = new Stack<>();
+        char[] inputAry = inputString.toCharArray();
+        for (Character c:
+             inputAry) {
+            if (check.contains(c)){
+                boolean re = check.remove(c);
+                //System.out.println("remove: "+c+" "+re);
+            }else{
+                //System.out.println("Push: "+c);
+                check.add(c);
+            }
+        }
+        if(check.size()>1){
+            //System.out.println("size: "+ check.size());
+            return false;
+        }else{
+            return true;
+        }
+    }
+
+    /*
 You are given an array of integers. On each move you are allowed to increase exactly one of its element by one. Find the minimal number of moves required to obtain a strictly increasing sequence from the input.
 
 Example
@@ -344,5 +375,7 @@ isLucky(n) = false.
         test ne = new test();
         System.out.println("column: "+matrix[0].length+" row: "+matrix.length);
         System.out.println(ne.matrixElementsSum(matrix));
+
+        System.out.println(ne.palindromeRearranging("aabb"));
     }
 }
