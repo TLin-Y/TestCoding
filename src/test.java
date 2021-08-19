@@ -1,8 +1,5 @@
 import java.lang.reflect.Array;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 public class test {
 
@@ -21,7 +18,33 @@ reverseInParentheses(inputString) = "foorabbaz";
      */
 
     String reverseInParentheses(String inputString) {
+        int n = inputString.length();
+        Stack<Integer> opened = new Stack<>();
+        int[] pair = new int[n];
+        //find the ( ) positions
+        for (int i = 0; i < n; ++i) {
+            if (inputString.charAt(i) == '(')
+                opened.push(i);
+            if (inputString.charAt(i) == ')') {
+                int j = opened.pop();
+        //Save target positions to pair
+                pair[i] = j;
+                pair[j] = i;
+            }
+        }
 
+        StringBuilder sb = new StringBuilder();
+        //Use d as index moving left or right
+        for (int i = 0, d = 1; i < n; i += d) {
+            //when face (, replace cur index i to saved index of ), transfer for loop direction as -d(left).
+            if (inputString.charAt(i) == '(' || inputString.charAt(i) == ')') {
+                i = pair[i];
+                d = -d;
+            } else {//If fine, just append to string output.
+                sb.append(inputString.charAt(i));
+            }
+        }
+        return sb.toString();
     }
 
 /*
