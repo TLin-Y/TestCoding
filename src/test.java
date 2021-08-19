@@ -2,7 +2,46 @@ import java.lang.reflect.Array;
 import java.util.*;
 
 public class test {
-/*
+
+    /*
+    Given a rectangular matrix of characters, add a border of asterisks(*) to it.
+
+Example
+
+For
+
+picture = ["abc",
+           "ded"]
+the output should be
+
+addBorder(picture) = ["*****",
+                      "*abc*",
+                      "*ded*",
+                      "*****"]
+     */
+
+    String[] addBorder(String[] picture) {
+        String stars = "";
+        ArrayList<String> starlist = new ArrayList<>();
+        //For the first row, we should " * " + " *****...." + "*" format:
+        for(int i = 0; i<picture[0].length()+2;i++){//Column size with +2 sapce of *
+            stars +="*";
+        }
+        //Save the stars row in the list to be converted.
+        starlist.add(stars);
+        //Now for star columns, its mixed with "*" + chars + "*" format:
+        for(int i = 0; i<picture.length; i++){
+            starlist.add("*"+picture[i]+"*");
+        }
+        //Than add the final row:
+        starlist.add(stars);
+        //Convert the List to the String Array here
+        return starlist.toArray(new String[starlist.size()]);
+    }
+
+
+
+    /*
 Several people are standing in a row and need to be divided into two teams.
 The first person goes into team 1, the second goes into team 2,
 the third goes into team 1 again, the fourth into team 2, and so on.
