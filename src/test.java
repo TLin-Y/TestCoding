@@ -2,6 +2,37 @@ import java.lang.reflect.Array;
 import java.util.*;
 
 public class test {
+/*
+Several people are standing in a row and need to be divided into two teams.
+The first person goes into team 1, the second goes into team 2,
+the third goes into team 1 again, the fourth into team 2, and so on.
+You are given an array of positive integers -
+the weights of the people. Return an array of two integers,
+where the first element is the total weight of team 1,
+and the second element is the total weight of team 2 after the division is complete.
+
+Example
+
+For a = [50, 60, 60, 45, 70], the output should be
+alternatingSums(a) = [180, 105].
+ */
+    int[] alternatingSums(int[] a) {
+        int output1 = 0;
+        int output2 = 0;
+        int count = 0;
+        for (int i = 0; i < a.length; i++) {
+            if(count == 0){//team 1
+                output1 += a[i];
+                count = 1;
+            }else{//team 2
+                output2 += a[i];
+                count = 0;
+            }
+        }
+
+        return new int[]{output1, output2};
+    }
+
 
 
     /*
