@@ -7,9 +7,53 @@ import java.util.List;
 public class test {
 
 
+    /*
+    Write a function that reverses characters in (possibly nested) parentheses in the input string.
 
+Input strings will always be well-formed with matching ()s.
+
+Example
+
+For inputString = "(bar)", the output should be
+reverseInParentheses(inputString) = "rab";
+For inputString = "foo(bar)baz", the output should be
+reverseInParentheses(inputString) = "foorabbaz";
+     */
+
+    String reverseInParentheses(String inputString) {
+
+    }
+
+/*
+Some people are standing in a row in a park. There are trees between them which cannot be moved.
+Your task is to rearrange the people by their heights in a non-descending order without moving the trees.
+People can be very tall!
+
+Example
+
+For a = [-1, 150, 190, 170, -1, -1, 160, 180], the output should be
+sortByHeight(a) = [-1, 150, 160, 170, -1, -1, 180, 190].
+ */
     int[] sortByHeight(int[] a) {
-
+        int[] acopy = a.clone();
+        int[] scopy = a.clone();
+        List<Integer> purified = new ArrayList<Integer>();
+        Arrays.sort(scopy);//get sorted order
+        for (int e:
+             scopy) { //trim -1 values
+            if(e!=-1){
+                purified.add(e);
+            }
+        }
+        //compare and relocate
+        int j = 0;//Start index
+        for (int i = 0; i < a.length; i++) {
+            if(acopy[i]!=-1){
+                acopy[i] = purified.get(j);//relocate 1st position to 1st target.
+                j++;//move the index to next position.
+            }
+        }
+        return acopy;
     }
 
 
