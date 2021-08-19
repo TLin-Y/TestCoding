@@ -4,6 +4,31 @@ import java.util.*;
 public class test {
 
     /*
+You are given an array of integers. On each move you are allowed to increase exactly one of its element by one. Find the minimal number of moves required to obtain a strictly increasing sequence from the input.
+
+Example
+
+For inputArray = [1, 1, 1], the output should be
+arrayChange(inputArray) = 3.
+     */
+    int arrayChange(int[] inputArray) {
+        int differ = 0;
+        int prev = inputArray[0];
+        int output = 0;
+        for (int i = 1; i < inputArray.length; i++) {
+            if (inputArray[i] <= prev){// less or equal to prev
+                differ = prev - inputArray[i] + 1;
+                output += differ;
+                inputArray[i] = inputArray[i] + differ;
+                prev = inputArray[i];
+            }else {//larger than prev
+                prev = inputArray[i];
+            }
+        }
+        return output;
+    }
+
+    /*
 Two arrays are called similar if one can be obtained from another by swapping at most one pair of elements in one of the arrays.
 
 Given two arrays a and b, check whether they are similar.
