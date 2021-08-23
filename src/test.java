@@ -1,7 +1,82 @@
 import java.lang.reflect.Array;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class test {
+
+    public static void main(String[] args) {
+        int[] arr = new int[]{1,2,4,5,6,22,1,3};
+
+        //Array to list
+        List<Integer> arrList = new ArrayList<>(arr.length);
+        for (int i : arr) {
+            arrList.add(i);
+        }
+        System.out.println(arrList);
+
+        //Sort list
+        Collections.sort(arrList);
+        System.out.println(arrList);
+
+        int[][] matrix =  { { 0, 1, 1, 2 }, { 0, 5, 0, 0} , { 2, 1, 3, 10 } };
+        test ne = new test();
+        System.out.println("column: "+matrix[0].length+" row: "+matrix.length);
+        System.out.println(ne.matrixElementsSum(matrix));
+
+        System.out.println(ne.palindromeRearranging("aabb"));
+        System.out.println(ne.areEquallyStrong(15,10,15,10));
+        System.out.println(ne.isIPv4Address(".254.255.0"));
+    }
+    /*
+    An IP address is a numerical label assigned to each device (e.g., computer, printer) participating in a computer network that uses the Internet Protocol for communication. There are two versions of the Internet protocol, and thus two versions of addresses. One of them is the IPv4 address.
+
+Given a string, find out if it satisfies the IPv4 address naming rules.
+
+Example
+
+For inputString = "172.16.254.1", the output should be
+isIPv4Address(inputString) = true;
+
+For inputString = "172.316.254.1", the output should be
+isIPv4Address(inputString) = false.
+
+316 is not in range [0, 255].
+
+     */
+
+    boolean isIPv4Address(String inputString) {
+        String[] splStr = inputString.split("\\.");
+        if(splStr.length<4){
+            return false;
+        }
+        int flag = 0;
+        for (String s:
+             splStr) {
+            //System.out.println(s+" char: "+s.charAt(0));
+            if(s.length()<=0 || s.length()>3){
+                return false;
+            }
+            Matcher mer = Pattern.compile("^[+-]?[0-9]+$").matcher(s);
+            if (s.charAt(0) == '0' && s.length()>1) {
+                return false;
+            }
+
+            if (mer.find()) {//String is valid integer
+                if (Integer.parseInt(s) <= 255) {//Digits in the range
+                    flag++;
+                }
+            }
+        }
+        if(flag==4){
+            return true;
+        }else {
+            return false;
+        }
+    }
+
+
+
     /*
     Given an array of integers, find the maximal absolute difference between any two of its adjacent elements.
 
@@ -424,26 +499,4 @@ isLucky(n) = false.
     }
 
 
-    public static void main(String[] args) {
-        int[] arr = new int[]{1,2,4,5,6,22,1,3};
-
-        //Array to list
-        List<Integer> arrList = new ArrayList<>(arr.length);
-        for (int i : arr) {
-         arrList.add(i);
-        }
-        System.out.println(arrList);
-
-        //Sort list
-        Collections.sort(arrList);
-        System.out.println(arrList);
-
-        int[][] matrix =  { { 0, 1, 1, 2 }, { 0, 5, 0, 0} , { 2, 1, 3, 10 } };
-        test ne = new test();
-        System.out.println("column: "+matrix[0].length+" row: "+matrix.length);
-        System.out.println(ne.matrixElementsSum(matrix));
-
-        System.out.println(ne.palindromeRearranging("aabb"));
-        System.out.println(ne.areEquallyStrong(15,10,15,10));
-    }
 }
