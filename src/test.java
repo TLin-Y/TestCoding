@@ -2,6 +2,73 @@ import java.lang.reflect.Array;
 import java.util.*;
 
 public class test {
+    /*
+    Given an array of integers, find the maximal absolute difference between any two of its adjacent elements.
+
+Example
+
+For inputArray = [2, 4, 1, 0], the output should be
+arrayMaximalAdjacentDifference(inputArray) = 3.
+     */
+    int arrayMaximalAdjacentDifference(int[] inputArray) {
+        int max = 0;
+        for (int i = 0; i < inputArray.length-1; i++) {
+            if( Math.abs(inputArray[i]-inputArray[i+1]) >=max ){
+                max = Math.abs(inputArray[i]-inputArray[i+1]);
+            }
+        }
+        return max;
+    }
+
+    /*
+    Call two arms equally strong if the heaviest weights they each are able to lift are equal.
+
+Call two people equally strong if their strongest arms are equally strong (the strongest arm can be both the right and
+the left), and so are their weakest arms.
+
+Given your and your friend's arms' lifting capabilities find out if you two are equally strong.
+
+Example
+
+For yourLeft = 10, yourRight = 15, friendsLeft = 15, and friendsRight = 10, the output should be
+areEquallyStrong(yourLeft, yourRight, friendsLeft, friendsRight) = true;
+For yourLeft = 15, yourRight = 10, friendsLeft = 15, and friendsRight = 10, the output should be
+areEquallyStrong(yourLeft, yourRight, friendsLeft, friendsRight) = true;
+For yourLeft = 15, yourRight = 10, friendsLeft = 15, and friendsRight = 9, the output should be
+areEquallyStrong(yourLeft, yourRight, friendsLeft, friendsRight) = false.
+     */
+    boolean areEquallyStrong(int yourLeft, int yourRight, int friendsLeft, int friendsRight) {
+            int max1=0;
+            int min1 = 0;
+            int max2 = 0;
+            int min2 = 0;
+
+            if(yourLeft<=yourRight){
+                max1 = yourRight;
+                min1 = yourLeft;
+            }else{
+                max1 = yourLeft;
+                min1 = yourRight;
+            }
+
+            if(friendsLeft<=friendsRight){
+                max2 = friendsRight;
+                min2 = friendsLeft;
+            }else{
+                max2 = friendsLeft;
+                min2 = friendsRight;
+            }
+
+            if(max1==max2 && min1==min2){
+                return true;
+            }else{
+                return false;
+            }
+
+
+    }
+
+
 
     /*
     Given a string, find out if its characters can be rearranged to form a palindrome.
@@ -377,5 +444,6 @@ isLucky(n) = false.
         System.out.println(ne.matrixElementsSum(matrix));
 
         System.out.println(ne.palindromeRearranging("aabb"));
+        System.out.println(ne.areEquallyStrong(15,10,15,10));
     }
 }
