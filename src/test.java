@@ -28,6 +28,51 @@ public class test {
         System.out.println(ne.areEquallyStrong(15,10,15,10));
         System.out.println(ne.isIPv4Address(".254.255.0"));
     }
+
+    /*
+    You are given an array of integers representing coordinates of obstacles situated on a straight line.
+
+Assume that you are jumping from the point with coordinate 0 to the right. You are allowed only to make jumps of the same length represented by some integer.
+
+Find the minimal length of the jump enough to avoid all the obstacles.
+
+Example
+
+For inputArray = [5, 3, 6, 7, 9], the output should be
+avoidObstacles(inputArray) = 4.
+     */
+
+    int avoidObstacles(int[] inputArray) {
+        // Insert all array elements in a hash table
+        // and find the maximum value in the array
+        HashSet<Integer> hs = new HashSet<Integer>();
+        int max = inputArray[0];
+        for (int i=0; i<inputArray.length; i++)
+        {
+            hs.add(inputArray[i]);
+            max = Math.max(max, inputArray[i]);
+        }
+
+        // checking for every possible length which
+        // yield us solution
+        for (int i = 1; i <= max; i++) {
+            int j;
+            for (j = i; j <= max; j = j + i) {
+
+                // if there is obstacle, break the loop.
+                if (hs.contains(j))
+                    break;
+            }
+
+            // If above loop did not break
+            if (j > max)
+                return i;
+        }
+
+        return max+1;
+    }
+
+
     /*
     An IP address is a numerical label assigned to each device (e.g., computer, printer) participating in a computer network that uses the Internet Protocol for communication. There are two versions of the Internet protocol, and thus two versions of addresses. One of them is the IPv4 address.
 
