@@ -28,6 +28,73 @@ public class test {
         System.out.println(ne.areEquallyStrong(15,10,15,10));
         System.out.println(ne.isIPv4Address(".254.255.0"));
     }
+/*
+In the popular Minesweeper game you have a board with some mines and those cells that don't contain a mine have a number in it that indicates the total number of mines in the neighboring cells. Starting off with some arrangement of mines we want to create a Minesweeper game setup.
+Example
+For
+matrix = [[true, false, false],
+          [false, true, false],
+          [false, false, false]]
+the output should be
+minesweeper(matrix) = [[1, 2, 1],
+                       [2, 1, 1],
+                       [1, 1, 1]]
+ */
+
+    int[][] minesweeper(boolean[][] matrix) {
+        int rowL = matrix.length;
+        int colL = matrix[0].length;
+        int[][] sol = new int[rowL][colL];
+        for (int i = 0; i < rowL; i++) {
+            for (int j = 0; j < colL; j++) {
+                sol[i][j] = findNeighbors(matrix,i,j);
+            }
+        }
+        return sol;
+    }
+
+    int findNeighbors(boolean[][] matrix,int i,int j){
+        int count = 0;
+        int rowL = matrix.length;
+        int colL = matrix[0].length;
+        //Case 1 , [1 2 3,
+        //          4 5 6,
+        //          7 8 9] , 1 position to be check.
+        if(i >=1 && j >=1){//when meet, position 1 exist
+            if(matrix[i-1][j-1]) count++;
+        }
+        //Case 2, check 2rd postion.
+        if(i>=1){
+            if(matrix[i-1][j]) count++;
+        }
+        //Case 3, check 3rd postion.
+        if(i>=1 && j < colL-1){
+            if(matrix[i-1][j+1]) count++;
+        }
+        //Case 4, check 4th postion.
+        if(j>=1){
+            if(matrix[i][j-1]) count++;
+        }
+        //Case 5, check 6nd position.
+        if(j<colL-1){
+            if(matrix[i][j+1]) count++;
+        }
+        //Case 6, check 7th position.
+        if(i<rowL-1 && j >= 1){
+            if(matrix[i+1][j-1]) count++;
+        }
+        //Case 7, check 8th position.
+        if(i<rowL-1){
+            if(matrix[i+1][j]) count++;
+        }
+        //Case 8, check 9th postion.
+        if(i<rowL-1 && j < colL-1){
+            if(matrix[i+1][j+1]) count++;
+        }
+        return count;
+    }
+
+
 
     /*
     You are given an array of integers representing coordinates of obstacles situated on a straight line.
