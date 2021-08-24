@@ -28,6 +28,32 @@ public class test {
         System.out.println(ne.areEquallyStrong(15,10,15,10));
         System.out.println(ne.isIPv4Address(".254.255.0"));
     }
+/*
+Check if all digits of the given integer are even.
+Example
+For n = 248622, the output should be
+evenDigitsOnly(n) = true;
+For n = 642386, the output should be
+evenDigitsOnly(n) = false.
+Input/Output
+[execution time limit] 3 seconds (java)
+[input] integer n
+Guaranteed constraints:
+1 ≤ n ≤ 109.
+[output] boolean
+true if all digits of n are even, false otherwise.
+ */
+boolean evenDigitsOnly(int n) {
+    String temp = Integer.toString(n);
+    char[] strAry = temp.toCharArray();
+    for (char s: strAry) {
+        int cur = Integer.parseInt(Character.toString(s));
+        if(cur%2!=0){
+            return false;
+        }
+    }
+    return true;
+}
 
 
 /*
