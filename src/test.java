@@ -29,6 +29,33 @@ public class test {
         System.out.println(ne.isIPv4Address(".254.255.0"));
     }
 /*
+Given a string, your task is to replace each of its characters by the next one in the English alphabet; i.e. replace a with b, replace b with c, etc (z would be replaced by a).
+Example
+For inputString = "crazy", the output should be alphabeticShift(inputString) = "dsbaz".
+ */
+String alphabeticShift(String inputString) {
+    if(inputString==null || inputString.length()==0)
+        return null;
+    String result="";
+    for(int i=0;i<inputString.length();i++){
+        if(inputString.charAt(i)>='a' && inputString.charAt(i)<='z'
+                || inputString.charAt(i)>='A' && inputString.charAt(i)<='Z' ){
+            if(inputString.charAt(i)=='z')
+                result+='a';
+            else if(inputString.charAt(i)=='Z')
+                result+='A';
+            else
+                result+=(char) (inputString.charAt(i)+1);
+        }
+        else
+            result+=(char) (inputString.charAt(i));
+    }
+    return result;
+}
+
+
+
+/*
 Correct variable names consist only of English letters, digits and underscores and they can't start with a digit.
 Check if the given string is a correct variable name.
 Example
