@@ -28,6 +28,75 @@ public class test {
         System.out.println(ne.areEquallyStrong(15,10,15,10));
         System.out.println(ne.isIPv4Address(".254.255.0"));
     }
+
+    String[] renderMessengerWindow(String[][] messages, int width, int userWidth) {
+        String outline = "+";
+        for(int i =0;i<width;i++){
+            outline+="*";
+        }
+        outline+="+";
+        List<String> output = new ArrayList<String>();
+        output.add(outline);
+
+        for(int i =0; i<messages.length;i++){
+            int userID = Integer.parseInt(messages[i][0]);
+            String curMsg = messages[i][1];
+            String curLine = "|";
+            String empty = "";
+            for(int j =0; j< width-userWidth;j++){
+                empty+=" ";
+            }
+
+            if(curMsg.length()<=userWidth){
+
+                String pos = "";
+                for(int k = 0; k< userWidth-curMsg.length();k++){
+                    pos+=" ";
+                }
+                if(userID==1){
+                    output.add("|"+curMsg+pos+empty+"|");}
+                else{
+                    output.add("|"+empty+curMsg+pos+"|");
+                }
+
+            }else{//UserWidth < curMsg. Shift lines display
+
+                for(int l = 0; l < curMsg.length(); l = l+userWidth){
+                    String tempLine = "";
+                    if(l+userWidth<curMsg.length()){
+                        tempLine = curMsg.substring(l, l+userWidth);
+                    }else{
+                        tempLine = curMsg.substring(l, curMsg.length());
+                        String p = "";
+                        for(int e = 0; e < userWidth-tempLine.length(); e++){
+                            p+=" ";
+                        }
+                        tempLine += p;
+                    }
+
+                    if(userID==1){
+                        output.add("|"+tempLine+empty+"|");}
+                    else{
+                        output.add("|"+empty+tempLine+"|");
+                    }
+                }
+            }
+
+        }
+        output.add(outline);
+        return (String[]) output.toArray();
+    }
+
+    /*
+Given two cells on the standard chess board, determine whether they have the same color or not.
+Example
+For cell1 = "A1" and cell2 = "C3", the output should be
+chessBoardCellColor(cell1, cell2) = true.
+ */
+boolean chessBoardCellColor(String cell1, String cell2) {
+return true;
+}
+
 /*
 Given a string, your task is to replace each of its characters by the next one in the English alphabet; i.e. replace a with b, replace b with c, etc (z would be replaced by a).
 Example
