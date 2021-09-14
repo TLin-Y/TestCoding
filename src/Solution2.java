@@ -34,9 +34,81 @@ a v i k e l
  */
 public class Solution2 {
     public static void main(String[] args) throws IOException {
+        {
+            Scanner s = new Scanner(System.in);
+            String str = s.nextLine();
+            String sub = s.nextLine();
+            int count1 = (str.length()-(str.replace(sub,"")).length())/sub.length();
+            int count = 0;
+            for(int i = 0; i < str.length();i++){
+                int j = i;
+                int k = 0;
+                while(j<str.length() && k < sub.length()){
+                    if(str.charAt(j)==sub.charAt(k)){
+                        ++j;
+                        ++k;
+                        if(k==sub.length()-1){
+                            ++count;
+                        }
+                    }else{
+                        break;
+                    }
+                }
+            }
+            if(count>count1){
+                System.out.println(count);
+            }else{
+                System.out.println(count1);
+            }
+            /*
+            // Write your code here
+            //Scanner
+            Scanner s = new Scanner(System.in);
+            String name2 = s.nextLine();             // Read input from STDIN
+            String[] inputs = name2.split(" ");
+            String strA = inputs[0];
+            String strB = inputs[1];
+            char[] a1 = strA.toCharArray();
+            char[] a2 = strB.toCharArray();
+            int max = 0;
+            int index = 0;
+            boolean f = false;
+            if(strA.length()<strB.length()){
+                max = strB.length();
+            }else{
+                max = strA.length();
+            }
+            for(int i=0;i<max;i++){
+                if(i+1==max){
+                    if(strA.length()!=strB.length()){
+                        if(f==false) {
+                            index = max-1;
+                        }
+                    }else{
+                        if(a1[i]!=a2[i]){
+                            index = i;
+                            f = true;
+                        }
+                    }
+                }else{
+                    if(a1[i]!=a2[i]){
+                        index = i;
+                        f = true;
+                    }
+                }
+                System.out.println("i:"+i+" index:" +index);
+            }
+            if(strA.length()<strB.length()){
+                System.out.println(a2[index]+" index: "+index);
+            }else{
+                System.out.println(a1[index]+" index: "+index);
+            }
+        }
+*/
         /*
         input
          */
+        /*
         Scanner s = new Scanner(System.in);
         String numOfProducts = s.nextLine();             // Read input from STDIN
         int n = Integer.parseInt(numOfProducts);
@@ -51,6 +123,7 @@ public class Solution2 {
         /*
         output the inputs here
          */
+        /*
         for (int i = 0; i < n; i++) {
 
             if(i+1==n){
@@ -73,7 +146,7 @@ public class Solution2 {
                 System.out.print(total+" ");
             }
         }
-
+        */
 
 
 
@@ -175,7 +248,7 @@ public class Solution2 {
         3 7 1 9 2 0 5 15 4 30
          */
 
-    }
+        }
         /*
         // Write your code here
         Scanner s = new Scanner(System.in);
@@ -202,5 +275,5 @@ public class Solution2 {
         }
         System.out.println(total);
         */
-
+    }
 }
